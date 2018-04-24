@@ -1,4 +1,4 @@
-<%@ Page Language="vb" AutoEventWireup="true" CodeFile="Default.aspx.vb" Inherits="_Default" %>
+﻿<%@ Page Language="vb" AutoEventWireup="true" CodeFile="Default.aspx.vb" Inherits="_Default" %>
 
 <%@ Register Src="~/UserControls/WorkbookPreviewControl.ascx" TagPrefix="dx" TagName="Preview" %>
 
@@ -6,11 +6,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-	<title></title>
+    <title></title>
 </head>
 <body>
-	<form id="form1" runat="server">
-		<dx:Preview runat="server" ID="previewControl" ClientInstanceName="clientPreviewControl" />
-	</form>
+    <form id="form1" runat="server">
+        <dx:Preview runat="server" ID="previewControl" ClientInstanceName="clientPreviewControl" />
+    </form>
 </body>
 </html>
