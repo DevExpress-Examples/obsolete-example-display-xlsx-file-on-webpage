@@ -1,39 +1,25 @@
 ﻿Imports System.IO
 Imports DevExpress.Spreadsheet
-
-Public NotInheritable Class StreamCopyHelper
-
-    Private Sub New()
-    End Sub
-
-    Public Shared Sub Copy(ByVal src As Stream, ByVal dst As Stream)
-        Const bufferSize As Integer = 32768
-        Dim buffer(bufferSize - 1) As Byte
-        Dim bytesRead As Integer = 0
-        Do
-            bytesRead = src.Read(buffer, 0, bufferSize)
-            dst.Write(buffer, 0, bytesRead)
-
-        Loop While bytesRead = bufferSize
-    End Sub
-End Class
+Imports DevExpress.XtraSpreadsheet.Export
 
 Public Class HtmlContentGenerator
-    Private dstStream As Stream
-    Public Sub New(ByVal dstStream As Stream)
-        Me.dstStream = dstStream
+    Private stream As Stream
+    Public Sub New(ByVal stream As Stream)
+        Me.stream = stream
     End Sub
-    Public Sub Generate(ByVal book As IWorkbook, ByVal sheetIndx As Integer)
-        Dim model As DevExpress.XtraSpreadsheet.Model.DocumentModel = book.Model
-        Dim tempStream As New MemoryStream()
-        Dim options As New DevExpress.XtraSpreadsheet.Export.HtmlDocumentExporterOptions()
-        options.SheetIndex = sheetIndx
-        options.EmbedImages = True
-        model.InternalAPI.SaveDocumentHtmlContent(tempStream, options)
-        tempStream.Seek(0, SeekOrigin.Begin)
-        StreamCopyHelper.Copy(tempStream, Me.dstStream)
+    Public Sub Generate(ByVal workbook As IWorkbook, ByVal sheetIndex As Integer)
+        Using ms As New MemoryStream()
+            Dim options As HtmlDocumentExporterOptions = New HtmlDocumentExporterOptions With { _
+                .SheetIndex = sheetIndex, _
+                .EmbedImages = True, _
+                .AnchorImagesToPage = True _
+            }
+            workbook.ExportToHtml(ms, options)
+            ms.Seek(0, SeekOrigin.Begin)
+            ms.CopyTo(Me.stream)
+        End Using
     End Sub
-    Public Sub Generate(ByVal book As IWorkbook)
-        Generate(book, 0)
+    Public Sub Generate(ByVal workbook As IWorkbook)
+        Generate(workbook, 0)
     End Sub
 End Class

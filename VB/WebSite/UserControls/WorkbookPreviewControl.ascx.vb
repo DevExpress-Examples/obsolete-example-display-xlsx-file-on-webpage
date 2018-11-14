@@ -6,9 +6,9 @@ Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports DevExpress.Spreadsheet
 Imports System.Net
-Imports DevExpress.Web.ASPxTabControl
+Imports DevExpress.Web
 Imports System.Web.UI.HtmlControls
-Imports DevExpress.Web.ASPxClasses
+
 
 Partial Public Class UserControls_WorkbookPreviewControl
     Inherits System.Web.UI.UserControl
@@ -33,7 +33,7 @@ Partial Public Class UserControls_WorkbookPreviewControl
         End If
     End Sub
     Private Sub PrepareSingleWorksheetForPreview()
-        PrepareIframeProperties(0, Me.previewFrame0)
+        PrepareIframeProperties(0, previewFrame0)
         Me.previewFrame0.Attributes.Add("style", "border: 2px solid rgb(224, 224, 224);")
     End Sub
     Private Sub PrepareMultiWorksheetForPreview()
@@ -44,7 +44,7 @@ Partial Public Class UserControls_WorkbookPreviewControl
             Dim sheet As Worksheet = Workbook.Worksheets(i)
             tabPage.Text = sheet.Name
             ASPxPageControl1.TabPages.Add(tabPage)
-            Dim iframe As New HtmlGenericControl("IFRAME")
+            Dim iframe As New HtmlIframe()
             iframe.ID = String.Format("previewFrame{0}", i)
             PrepareIframeProperties(i, iframe)
             Dim whiteDiv As New HtmlGenericControl("DIV")
@@ -55,7 +55,7 @@ Partial Public Class UserControls_WorkbookPreviewControl
             tabPage.ContentCollection.Add(contentControl)
         Next i
     End Sub
-    Private Sub PrepareIframeProperties(ByVal i As Integer, ByVal iframe As HtmlGenericControl)
+    Private Sub PrepareIframeProperties(ByVal i As Integer, ByVal iframe As HtmlIframe)
         iframe.ClientIDMode = System.Web.UI.ClientIDMode.Static
         iframe.Attributes.Add("src", String.Format("{0}?preview={1}", Request.Url, i))
         iframe.Attributes.Add("width", "100%")
