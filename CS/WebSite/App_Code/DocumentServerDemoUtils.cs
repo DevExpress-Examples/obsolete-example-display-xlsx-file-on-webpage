@@ -17,7 +17,6 @@ public class HtmlContentGenerator
             {
                 SheetIndex = sheetIndex,
                 EmbedImages = true,
-                AnchorImagesToPage = true
             };
             workbook.ExportToHtml(ms, options);
             ms.Seek(0, SeekOrigin.Begin);
