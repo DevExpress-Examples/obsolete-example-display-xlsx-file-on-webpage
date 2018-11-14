@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DevExpress.Spreadsheet;
 using System.Net;
-using DevExpress.Web.ASPxTabControl;
+using DevExpress.Web;
 using System.Web.UI.HtmlControls;
-using DevExpress.Web.ASPxClasses;
+
 
 public partial class UserControls_WorkbookPreviewControl : System.Web.UI.UserControl {
     public IWorkbook Workbook { get; set; }
@@ -27,7 +27,7 @@ public partial class UserControls_WorkbookPreviewControl : System.Web.UI.UserCon
             PrepareSingleWorksheetForPreview();
     }
     void PrepareSingleWorksheetForPreview() {
-        PrepareIframeProperties(0, this.previewFrame0);
+        PrepareIframeProperties(0, previewFrame0);
         this.previewFrame0.Attributes.Add("style", "border: 2px solid rgb(224, 224, 224);");
     }
     void PrepareMultiWorksheetForPreview() {
@@ -38,7 +38,7 @@ public partial class UserControls_WorkbookPreviewControl : System.Web.UI.UserCon
             Worksheet sheet = Workbook.Worksheets[i];
             tabPage.Text = sheet.Name;
             ASPxPageControl1.TabPages.Add(tabPage);
-            HtmlGenericControl iframe = new HtmlGenericControl("IFRAME");
+            HtmlIframe iframe = new HtmlIframe();
             iframe.ID = String.Format("previewFrame{0}", i);
             PrepareIframeProperties(i, iframe);
             HtmlGenericControl whiteDiv = new HtmlGenericControl("DIV");
@@ -49,7 +49,7 @@ public partial class UserControls_WorkbookPreviewControl : System.Web.UI.UserCon
             tabPage.ContentCollection.Add(contentControl);
         }
     }
-    void PrepareIframeProperties(int i, HtmlGenericControl iframe) {
+    void PrepareIframeProperties(int i, HtmlIframe iframe) {
         iframe.ClientIDMode = System.Web.UI.ClientIDMode.Static;
         iframe.Attributes.Add("src", String.Format("{0}?preview={1}", Request.Url, i));
         iframe.Attributes.Add("width", "100%");
