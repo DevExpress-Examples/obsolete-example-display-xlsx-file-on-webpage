@@ -3,9 +3,9 @@
 
 * [DocumentServerDemoUtils.cs](./CS/WebSite/App_Code/DocumentServerDemoUtils.cs) (VB: [DocumentServerDemoUtils.vb](./VB/WebSite/App_Code/DocumentServerDemoUtils.vb))
 * [Default.aspx](./CS/WebSite/Default.aspx) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
-* [Default.aspx.cs](./CS/WebSite/Default.aspx.cs) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
+* [Default.aspx.cs](./CS/WebSite/Default.aspx.cs) (VB: [Default.aspx.vb](./VB/WebSite/Default.aspx.vb))
 * [WorkbookPreviewControl.ascx](./CS/WebSite/UserControls/WorkbookPreviewControl.ascx) (VB: [WorkbookPreviewControl.ascx](./VB/WebSite/UserControls/WorkbookPreviewControl.ascx))
-* [WorkbookPreviewControl.ascx.cs](./CS/WebSite/UserControls/WorkbookPreviewControl.ascx.cs) (VB: [WorkbookPreviewControl.ascx](./VB/WebSite/UserControls/WorkbookPreviewControl.ascx))
+* [WorkbookPreviewControl.ascx.cs](./CS/WebSite/UserControls/WorkbookPreviewControl.ascx.cs) (VB: [WorkbookPreviewControl.ascx.vb](./VB/WebSite/UserControls/WorkbookPreviewControl.ascx.vb))
 <!-- default file list end -->
 # How to display an XLSX document on the webpage
 
