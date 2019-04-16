@@ -37,14 +37,14 @@ End If
             }
         }
     });
-    dx = <%=ClientInstanceName%> = new SpreadsheetPreviewControl(<%=Workbook.Worksheets.Count%>, <%=String.Format("'{0}'", GetBasePath())%>);
+	dx = <%=ClientInstanceName%> = new SpreadsheetPreviewControl(<%=Workbook.Worksheets.Count%>, <%=String.Format("'{0}'", GetBasePath())%>);
     dx.frames = [];
     <%
-    For i As Integer = 0 To Workbook.Worksheets.Count - 1
+	For i As Integer = 0 To Workbook.Worksheets.Count - 1
     %>
-    dx.frames[ <%=i%> ] = <%=String.Format("'previewFrame{0}'", i)%>;
+	dx.frames[ <%=i%> ] = <%=String.Format("'previewFrame{0}'", i)%>;
     <%
-    Next i
+	Next i
     %>
     // ]]> 
 </script>
